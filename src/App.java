@@ -72,7 +72,7 @@ public class App {
                 break;
 
             case 4:
-
+                buscarProduto(pController, vProduto);
                 break;
 
             case 5:
@@ -106,6 +106,17 @@ public class App {
         if (pController.delete(idProduto, produtos)) 
             return true;
         return false;
+    }
+
+    private static void buscarProduto(ProdutoController pController, ProdutoView vProduto){
+        System.out.print("Informe o código do produto a ser exibido: ");
+        int idProduto = scanner.nextInt();
+        Produto produto = pController.findById(idProduto, produtos);
+        System.out.println(idProduto);
+        if(produto != null)
+            vProduto.show(produto);
+        else
+            System.out.println("Falha ao exibir!");
     }
 
     

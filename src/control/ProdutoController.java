@@ -28,4 +28,14 @@ public class ProdutoController {
         }
         return false;
     }
+
+    public Produto findById(int idProduto, Produto[] vetor){
+        Produto p;
+        for (int i = 0; i < vetor.length; i++)
+            if (vetor[i] != null && vetor[i].getIdProduto() == idProduto) {
+                p = vetor[i];
+                return p;
+            }
+        return p = null;
+    }
 }

@@ -32,4 +32,12 @@ public class ProdutoView {
 
         return produto;
     }
+
+    public void show(Produto produto){
+        System.out.println("---------- PRODUTO -----------");
+        System.out.println("Nome do produto: " + produto.getNome());
+        System.out.println("Preço do produto: " + produto.getPreco());
+        System.out.println("Marca do produto: " + produto.getMarca());
+        System.out.println("Quantidade em estoque: " + produto.getEstoque());
+    }
 }
