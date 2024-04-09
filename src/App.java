@@ -1,7 +1,6 @@
-import control.ProdutoController;
-import control.MarcaController;
+import control.*;
+import model.*;
 
-import model.Produto;
 import view.ProdutoView;
 
 import java.util.Scanner;
@@ -15,7 +14,23 @@ public class App {
         MarcaController marcaController = new MarcaController();
         ProdutoView vProduto = new ProdutoView();
 
+        init(produtoController, marcaController);
         menuPrincipal(produtoController, marcaController, vProduto);
+    }
+
+    public static void init(ProdutoController pController, MarcaController mController){
+        Marca marca = Marca.getInstance("Minas Mais");
+        mController.add(marca);
+        Produto produto = Produto.getInstance("Arroz", 28.50f, marca, 500);
+        inserir(pController, produto);
+        produto = Produto.getInstance("Feijão", 11, marca, 2500);
+        inserir(pController, produto);
+        produto = Produto.getInstance("Macarrão", 8.70f, marca, 1000);
+        inserir(pController, produto);
+        produto = Produto.getInstance("Suco 1L", 7.99f, marca, 550);
+        inserir(pController, produto);
+        produto = Produto.getInstance("Café", 13.5f, marca, 1200);
+        inserir(pController, produto);
     }
 
     public static void menuPrincipal(ProdutoController pController, MarcaController mController, ProdutoView vProduto){
@@ -77,8 +92,11 @@ public class App {
 
     private static boolean inserir(ProdutoController pController, Produto produto) {
         if (produto != null) 
-            if (pController.add(produto, produtos))
+            if (pController.add(produto, produtos)){
+                System.out.println("idProduto = " + produto.getIdProduto()); // excluir essa linha depois
                 return true;
+            }
+                
         return false;
     }
 

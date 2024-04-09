@@ -10,17 +10,17 @@ public class Produto {
 
     static public Produto getInstance(String nome, float preco, Marca marca, int estoque){
         if (nome.length() > 2 && preco > 0 && marca != null && estoque > 0){
-            geraId++;
             return new Produto(nome, preco, marca, estoque);
         }else
             return null;
     }
 
-    static public Produto getInstace(){
+    static public Produto getInstance(){
         return new Produto(null, 0, null, 0);
     }
 
     private Produto(String nome, float preco, Marca marca, int estoque){
+        geraId++;
         this.idProduto = geraId;
         this.nome = nome;
         this.preco = preco;

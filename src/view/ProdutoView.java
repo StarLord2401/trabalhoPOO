@@ -11,7 +11,7 @@ public class ProdutoView {
     private ProdutoController pController;
     
     public Produto lerProduto() {
-        Produto produto = Produto.getInstace();
+        Produto produto = Produto.getInstance();
         System.out.println("---------- PRODUTO -----------");
         System.out.print("Nome do produto: ");
         produto.setNome(scanner.next());
