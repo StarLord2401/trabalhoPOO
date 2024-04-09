@@ -29,10 +29,11 @@ public class App {
             System.out.println("4 - Ver detalhes de um produto");
             System.out.println("5 - Ver produtos cadastrados");
             System.out.println("6 - Ver produtos em ordem alfabética");
+            System.out.println("7 - Encerrar o programa");
             System.out.println("-------------------------------------");
             System.out.print("Opção desejada: ");
             escolha = scanner.nextInt();
-        } while (escolha > 6 || escolha < 1);
+        } while (escolha > 7 || escolha < 1);
 
         switch (escolha) {
             case 1:
@@ -45,7 +46,10 @@ public class App {
                 break;
             
             case 2:
-
+                if(excluir(pController))
+                    System.out.println("Produto excluído!");
+                else
+                    System.out.println("Falha ao excluir!");
                 break;
 
             case 3:
@@ -60,10 +64,15 @@ public class App {
 
                 break;
 
-            default:
+            case 6:
 
                 break;
+
+            default:
+                return;
         }
+
+        menuPrincipal(pController, mController, vProduto);
     }
 
     private static boolean inserir(ProdutoController pController, Produto produto) {
@@ -71,7 +80,14 @@ public class App {
             if (pController.add(produto, produtos))
                 return true;
         return false;
-        
+    }
+
+    private static boolean excluir(ProdutoController pController){
+        System.out.print("Informe o código do produto a ser excluído: ");
+        int idProduto = scanner.nextInt();
+        if (pController.delete(idProduto, produtos)) 
+            return true;
+        return false;
     }
 
     

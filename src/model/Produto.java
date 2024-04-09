@@ -62,4 +62,8 @@ public class Produto {
         if (nome.length() > 2)
             this.nome = nome;         
     }
+
+    public int getIdProduto() {
+        return idProduto;
+    }
 }
