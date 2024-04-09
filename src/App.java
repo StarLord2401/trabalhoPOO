@@ -76,7 +76,7 @@ public class App {
                 break;
 
             case 5:
-
+                listarTodos(vProduto);
                 break;
 
             case 6:
@@ -112,12 +112,14 @@ public class App {
         System.out.print("Informe o código do produto a ser exibido: ");
         int idProduto = scanner.nextInt();
         Produto produto = pController.findById(idProduto, produtos);
-        System.out.println(idProduto);
         if(produto != null)
             vProduto.show(produto);
         else
             System.out.println("Falha ao exibir!");
     }
 
+    private static void listarTodos(ProdutoView vProduto){
+        vProduto.showAll(produtos);
+    }
     
 }
