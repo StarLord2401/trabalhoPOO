@@ -36,7 +36,7 @@ public class App {
     public static void menuPrincipal(ProdutoController pController, MarcaController mController, ProdutoView vProduto){
         int escolha;
         do {
-            System.out.println("---------- MENU PRINCIPAL -----------");
+            System.out.println("\n---------- MENU PRINCIPAL -----------");
             System.out.println("1 - Inserir produtos");
             System.out.println("2 - Excluir produto");
             System.out.println("3 - Alterar produto");
@@ -68,7 +68,10 @@ public class App {
                 break;
 
             case 3:
-
+                if(alterar(pController, vProduto))
+                    System.out.println("Produto alterado!");
+                else
+                    System.out.println("Falha ao alterar!");
                 break;
 
             case 4:
@@ -120,6 +123,19 @@ public class App {
 
     private static void listarTodos(ProdutoView vProduto){
         vProduto.showAll(produtos);
+    }
+
+    private static boolean alterar(ProdutoController pController, ProdutoView vProduto){
+        System.out.print("Informe o código do produto a ser alterado: ");
+        int idProduto = scanner.nextInt();
+        Produto produto = pController.findById(idProduto, produtos);
+        if(produto != null){
+            vProduto.show(produto);
+            Produto novo = vProduto.lerProduto();
+            if (pController.update(idProduto, novo,  produtos)) 
+                return true;
+        }
+        return false;
     }
     
 }

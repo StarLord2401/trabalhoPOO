@@ -1,5 +1,6 @@
 package control;
 
+import model.Marca;
 import model.Produto;
 
 public class ProdutoController {
@@ -37,5 +38,19 @@ public class ProdutoController {
                 return p;
             }
         return p = null;
+    }
+
+    public boolean update(int idProduto, Produto novo, Produto[] vetor){
+        if(novo != null){
+            for (int i = 0; i < vetor.length; i++) 
+                if (vetor[i] != null && vetor[i].getIdProduto() == idProduto) {
+                    vetor[i].setNome(novo.getNome());
+                    vetor[i].setPreco(novo.getPreco());
+                    vetor[i].setMarca(Marca.getInstance(novo.getMarca()));;
+                    vetor[i].setEstoque(novo.getEstoque());;                    
+                    return true;
+                }
+        }
+        return false;
     }
 }
