@@ -8,18 +8,18 @@ public class Produto {
     private Marca marca;
     private int estoque;
 
-    static public Produto getInstance(String nome, float preco, Marca marca, int estoque){
-        if (nome.length() > 2 && preco > 0 && marca != null && estoque > 0){
+    static public Produto getInstance(String nome, float preco, Marca marca, int estoque) {
+        if (nome.length() > 2 && preco > 0 && marca != null && estoque > 0) {
             return new Produto(nome, preco, marca, estoque);
-        }else
+        } else
             return null;
     }
 
-    static public Produto getInstance(){
+    static public Produto getInstance() {
         return new Produto(null, 0, null, 0);
     }
 
-    private Produto(String nome, float preco, Marca marca, int estoque){
+    private Produto(String nome, float preco, Marca marca, int estoque) {
         geraId++;
         this.idProduto = geraId;
         this.nome = nome;
@@ -60,7 +60,7 @@ public class Produto {
 
     public void setNome(String nome) {
         if (nome.length() > 2)
-            this.nome = nome;         
+            this.nome = nome;
     }
 
     public int getIdProduto() {

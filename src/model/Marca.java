@@ -5,14 +5,14 @@ public class Marca {
     private int idMarca;
     private String nome;
 
-    public static Marca getInstance(String nome){
-        if (nome.length() > 2) 
+    public static Marca getInstance(String nome) {
+        if (nome.length() > 2)
             return new Marca(nome);
         else
             return null;
     }
 
-    private Marca(String nome){
+    private Marca(String nome) {
         geraId++;
         this.idMarca = geraId;
         this.nome = nome;
