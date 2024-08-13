@@ -42,27 +42,36 @@ public class Sistema {
         inserir(pController, produto);        
     }
 
-    public void trocarUsuario(){
+    public void trocarUsuario(ProdutoController pController, ProdutoView vProduto, MarcaController mController){
         int modulo = 0;
         do {
-            System.out.println(" ------------------------------------------- ");
-            System.out.println("            MÓDULO DE USUÁRIO \n");
+            System.out.println("\n------------ MÓDULO DO USUÁRIO ------------ ");
             System.out.println("1 - Atendente");
             System.out.println("2 - Administrador");
+            System.out.println("3 - Encerrar o programa");
             System.out.println(" ------------------------------------------- ");
             System.out.print("Opção desejada: ");
             modulo = scanner.nextInt();
-        } while (modulo != 1 && modulo != 2);
+        } while (modulo < 1 || modulo > 3);
         
-        if (modulo == 1)
-            System.out.println("ATENDENTE");
-            // this.menuAtendente();
-        else 
-            System.out.println("ADM");
-            // this.menuAdministrador();
+        System.out.println();
+
+        switch (modulo) {
+            case 1:
+                System.out.println("ATENDENTE");
+                menuAtendente(pController, vProduto, mController);
+                break;
+            case 2:
+                System.out.println("ADMINISTRADOR");
+                menuAdministrador(pController, vProduto, mController);
+                break;
+            default:
+                System.out.println("FIM DO PROGRAMA");
+                return;
+        }
     }
 
-    public void menuAtendente(){
+    public void menuAtendente(ProdutoController pController, ProdutoView vProduto, MarcaController mController){
         /* 
         O atendente realiza a busca e insere os produtos no carrinho, relacionando o preço de venda
         e a quantidade (Item). Esse carrinho conterá referências para diversos itens vendidos. O carrinho
@@ -71,9 +80,44 @@ public class Sistema {
         deverá então realizar as operações de baixa no estoque dos produtos que estão no carrinho. A venda
         tem informações sobre o código, data, itens comprados e o nome do cliente.
         */
+
+        int escolha = 0;
+        do {
+            System.out.println("\n---------- MENU ATENDENTE -----------");
+            System.out.println("1 - Inserir produto no carrinho");
+            System.out.println("2 - Excluir produto do carrinho");
+            System.out.println("3 - Finalizar venda");
+            System.out.println("4 - Trocar o usuário");
+            System.out.println("-------------------------------------");
+            System.out.print("Opção desejada: ");
+            escolha = scanner.nextInt();
+        } while (escolha < 1 || escolha > 4);
+
+        System.out.println();
+
+        switch (escolha) {
+            case 1:
+                // inserir produto no carrinho
+                break;
+
+            case 2:
+                // excluir produto do carrinho
+                break;
+
+            case 3:
+                // finalizar a venda
+                break;
+
+            default:
+                // trocar o usuário
+                trocarUsuario(pController, vProduto, mController);
+                return;
+        }
+        scanner.nextLine();
+        menuAtendente(pController, vProduto, mController);
     }
 
-    public void menuAdministrador(){
+    public void menuAdministrador(ProdutoController pController, ProdutoView vProduto, MarcaController mController){
         /*
         O administrador pode realizar as seguintes operações:
         1. Inserir produtos;
@@ -86,76 +130,146 @@ public class Sistema {
             d) Pesquisar por uma venda através do código da venda (exibir: código, data, nome do cliente,
             relação dos produtos vendidos e a respectiva quantidade e valor total da venda).
         */
-    }
 
-    // VAI VIRAR O MENU ADMINISTRADOR
-    public void menuPrincipal(ProdutoController pController, MarcaController mController, ProdutoView vProduto) {
-        int escolha;
+        int escolha = 0;
         do {
-            System.out.println("\n\n");
-            System.out.println("---------- MENU PRINCIPAL -----------");
-            System.out.println();
-            System.out.println("1 - Inserir produtos");
+            System.out.println("\n---------- MENU ADMINISTRADOR -----------");
+            System.out.println("1 - Inserir novo produto");
             System.out.println("2 - Excluir produto");
-            System.out.println("3 - Alterar produto");
-            System.out.println();
-            System.out.println("------------- LISTAGENS -------------");
-            System.out.println();
-            System.out.println("4 - Ver detalhes de um produto");
-            System.out.println("5 - Ver produtos cadastrados");
-            System.out.println("6 - Ver produtos em ordem alfabética");
-            System.out.println("7 - Encerrar o programa");
-            System.out.println();
-            System.out.println("-------------------------------------");
-            System.out.println();
+            System.out.println("3 - Alterar dados de um produto");
+            System.out.println("4 - Trocar o usuário");
+            System.out.println("--------------- LISTAGENS ----------------");
+            System.out.println("5 - Todos os produtos");
+            System.out.println("6 - Todas as vendas");
+            System.out.println("7 - Todas vendas de uma data");
+            System.out.println("8 - Buscar venda pelo código");
+            System.out.println("------------------------------------------");
             System.out.print("Opção desejada: ");
             escolha = scanner.nextInt();
-        } while (escolha > 7 || escolha < 1);
+        } while (escolha < 1 || escolha > 8);
 
         System.out.println();
 
         switch (escolha) {
             case 1:
+                // inserir novo produto na loja
                 Produto produto = vProduto.lerProduto();
                 if (inserir(pController, produto))
-                    System.out.println("Produto inserido!");
+                    System.out.println("Novo produto inserido!");
                 else
-                    System.out.println("Falha ao inserir!");
-
+                    System.out.println("Falha ao inserir novo produto!");
                 break;
 
             case 2:
+                // excluir produto da loja
                 if (excluir(pController))
                     System.out.println("Produto excluído!");
                 else
-                    System.out.println("Falha ao excluir!");
+                    System.out.println("Falha ao excluir produto!");
                 break;
 
             case 3:
+                // alterar dados de um produto
                 if (alterar(pController, mController, vProduto))
                     System.out.println("Produto alterado!");
                 else
-                    System.out.println("Falha ao alterar!");
+                    System.out.println("Falha ao alterar produto!");
                 break;
-
+            
             case 4:
-                buscarProduto(pController, vProduto);
-                break;
+                // trocar o usuário
+                trocarUsuario(pController, vProduto, mController);
+                return;
 
             case 5:
+                // listar todos os produtos
                 listarTodos(vProduto);
                 break;
 
             case 6:
-                listarOrdenados(vProduto);
+                // listar todas as vendas
                 break;
-
+            
+            case 7:
+                // listar todas as vendas de uma data
+                break;
+            
             default:
-                return;
+                // buscar venda pelo codigo
+                break;
         }
         scanner.nextLine();
-        menuPrincipal(pController, mController, vProduto);
+        menuAdministrador(pController, vProduto, mController);
     }
+
+    // MENU PRINCIPAL ANTIGO --- NAO SERAH MAIS USADO
+    // public void menuPrincipal(ProdutoController pController, MarcaController mController, ProdutoView vProduto) {
+    //     int escolha;
+    //     do {
+    //         System.out.println("\n\n");
+    //         System.out.println("---------- MENU PRINCIPAL -----------");
+    //         System.out.println();
+    //         System.out.println("1 - Inserir produtos");
+    //         System.out.println("2 - Excluir produto");
+    //         System.out.println("3 - Alterar produto");
+    //         System.out.println();
+    //         System.out.println("------------- LISTAGENS -------------");
+    //         System.out.println();
+    //         System.out.println("4 - Ver detalhes de um produto");
+    //         System.out.println("5 - Ver produtos cadastrados");
+    //         System.out.println("6 - Ver produtos em ordem alfabética");
+    //         System.out.println("7 - Encerrar o programa");
+    //         System.out.println();
+    //         System.out.println("-------------------------------------");
+    //         System.out.println();
+    //         System.out.print("Opção desejada: ");
+    //         escolha = scanner.nextInt();
+    //     } while (escolha > 7 || escolha < 1);
+
+    //     System.out.println();
+
+    //     switch (escolha) {
+    //         case 1:
+    //             Produto produto = vProduto.lerProduto();
+    //             if (inserir(pController, produto))
+    //                 System.out.println("Produto inserido!");
+    //             else
+    //                 System.out.println("Falha ao inserir!");
+
+    //             break;
+
+    //         case 2:
+    //             if (excluir(pController))
+    //                 System.out.println("Produto excluído!");
+    //             else
+    //                 System.out.println("Falha ao excluir!");
+    //             break;
+
+    //         case 3:
+    //             if (alterar(pController, mController, vProduto))
+    //                 System.out.println("Produto alterado!");
+    //             else
+    //                 System.out.println("Falha ao alterar!");
+    //             break;
+
+    //         case 4:
+    //             buscarProduto(pController, vProduto);
+    //             break;
+
+    //         case 5:
+    //             listarTodos(vProduto);
+    //             break;
+
+    //         case 6:
+    //             listarOrdenados(vProduto);
+    //             break;
+
+    //         default:
+    //             return;
+    //     }
+    //     scanner.nextLine();
+    //     menuPrincipal(pController, mController, vProduto);
+    // }
 
     private boolean inserir(ProdutoController pController, Produto produto) {
         if (produto != null)
@@ -250,11 +364,11 @@ public class Sistema {
                 case 4:
                     System.out.print("Quantidade em estoque: ");
                     scanner.nextLine();
-                    produto.setNome(scanner.next());
+                    produto.setEstoque(scanner.nextInt());
                     break;
 
                 default:
-                    menuPrincipal(pController, mController, vProduto);
+                    menuAdministrador(pController, vProduto, mController);
 
             }
 

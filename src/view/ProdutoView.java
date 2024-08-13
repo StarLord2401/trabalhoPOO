@@ -69,6 +69,7 @@ public class ProdutoView {
                 System.out.println();
                 showInList(vetor[i]);
             }
+        System.out.println();
     }
 
     // Listagem em ORDEM ALFABÉTICA
