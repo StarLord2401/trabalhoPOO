@@ -36,4 +36,20 @@ public class Venda {
         this.itensVendidos = itensVendidos;
         this.cliente = cliente;
     }
+
+    public int getIdVenda() {
+        return idVenda;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public Item[] getItensVendidos() {
+        return itensVendidos;
+    }
+
+    public String getCliente() {
+        return cliente;
+    }
 }

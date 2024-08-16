@@ -20,5 +20,20 @@ public class Item{
         this.valor = valor;
         this.quantidade = quantidade;
     }
-    
+
+    public int getIdItem() {
+        return idItem;
+    }
+
+    public String getProduto() {
+        return produto.getNome();
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
 }

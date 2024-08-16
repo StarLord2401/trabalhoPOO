@@ -53,7 +53,7 @@ public class ProdutoView {
         System.out.println();
     }
 
-    public void showInList(Produto produto) {
+    private void showInList(Produto produto) {
         System.out.printf("%-17s", produto.getIdProduto());
         System.out.printf("%-17s", produto.getNome());
         System.out.printf("%-17s", produto.getPreco());

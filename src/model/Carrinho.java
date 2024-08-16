@@ -5,7 +5,6 @@ public class Carrinho {
     private int idCarrinho;
     private Item[] itens;
 
-
     public static Carrinho getInstance(){
         return new Carrinho();
     }
@@ -13,6 +12,7 @@ public class Carrinho {
     private Carrinho(){
         geraId++;
         this.idCarrinho = geraId++;
+        this.itens = new Item[10];
     }
 
     public boolean addItem(Item item){
@@ -23,6 +23,15 @@ public class Carrinho {
             }
         return false;
     }
+
+    public Item[] getItens() {
+        return itens;
+    }
+
+    public void resetCarrinho(){
+        this.itens = new Item[10];
+    }
+
 
     
 }
