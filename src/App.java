@@ -18,6 +18,6 @@ public class App {
 
         Sistema system = Sistema.getInstance();
         system.init(pController, mController, vController);
-        system.trocarUsuario(pController, vProduto, mController, vVenda);
+        system.trocarUsuario(pController, vProduto, mController, vVenda, vController);
     }
 }

@@ -13,4 +13,12 @@ public class VendaController {
                 }
         return false;
     }
+
+    public Venda findById(int idVenda, Venda[] vetor){
+        Venda venda;
+        for (int i = 0; i < vetor.length; i++) 
+            if (vetor[i] != null && vetor[i].getIdVenda() == idVenda) 
+                return vetor[i];
+        return venda = null;
+    }
 }

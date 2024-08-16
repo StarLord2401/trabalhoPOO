@@ -130,4 +130,56 @@ public class ProdutoView {
         System.out.printf("%-17s", "ESTOQUE");
         System.out.println();
     }
+
+    public void menuAlterar(Produto produto){
+        int escolha;
+        do {
+            System.out.println("\n\n---------- MENU DE ALTERAR ----------\n");
+            System.out.println("1 - NOME");
+            System.out.println("2 - PREÇO");
+            System.out.println("3 - MARCA");
+            System.out.println("4 - ESTOQUE");
+            System.out.println("5 - Retornar ao MENU PRINCIPAL\n");
+            System.out.println("-------------------------------------\n");
+            System.out.print("Opção desejada: ");
+            escolha = scanner.nextInt();
+        } while (escolha > 6 || escolha < 1);
+
+        System.out.println();
+
+        switch (escolha) {
+            case 1:
+                System.out.print("Nome do produto: ");
+                scanner.nextLine();
+                produto.setNome(scanner.next());
+                break;
+
+            case 2:
+                System.out.print("Preço do produto: ");
+                scanner.nextLine();
+                produto.setPreco(scanner.nextFloat());
+                break;
+
+            case 3:
+                System.out.print("Marca do produto: ");
+                scanner.nextLine();
+                String texto = scanner.next();
+                Marca marca = mController.verificarMarca(texto);
+                if (marca != null)
+                    produto.setMarca(marca);
+                else {
+                    marca = Marca.getInstance(texto);
+                    mController.add(marca);
+                    produto.setMarca(marca);
+                }
+                break;
+
+            case 4:
+                System.out.print("Quantidade em estoque: ");
+                scanner.nextLine();
+                produto.setEstoque(scanner.nextInt());
+                break;
+
+        }
+    }
 }
