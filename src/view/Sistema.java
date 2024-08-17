@@ -25,7 +25,7 @@ public class Sistema {
 
     // INICIALIZAR COM 5 PRODUTOS E 2 VENDAS CADASTRADAS
     public void init(ProdutoController pController, MarcaController mController, VendaController vController) {
-        // criando marca do produto
+        // criando marca dos produtos
         Marca marca = Marca.getInstance("Minas Mais");
         mController.add(marca);
         // criando produtos
@@ -45,13 +45,13 @@ public class Sistema {
         carrinho.addItem(Item.getInstance(this.produtos[0], 30, 2));
         carrinho.addItem(Item.getInstance(this.produtos[1], 10, 1));
         carrinho.addItem(Item.getInstance(this.produtos[2], 9, 5));
-        Venda venda = Venda.getInstance(carrinho.getItens(), "João Paulo"); // gerar a venda com a data
+        Venda venda = Venda.getInstance("15/02/2024", carrinho.getItens(), "João Paulo"); 
         vController.add(this.vendas, venda); 
         carrinho.resetCarrinho();
         // venda 2
         carrinho.addItem(Item.getInstance(this.produtos[3], 10, 1));
         carrinho.addItem(Item.getInstance(this.produtos[4], 15, 2));
-        venda = Venda.getInstance(carrinho.getItens(), "Caio Francisco"); // gerar a venda com a data
+        venda = Venda.getInstance("15/02/2024", carrinho.getItens(), "Caio Francisco"); 
         vController.add(this.vendas, venda);
         carrinho.resetCarrinho();
     }
@@ -210,11 +210,15 @@ public class Sistema {
             
             case 7:
                 // listar todas as vendas de uma data
+                System.out.print("Informe qual a data (dia/mes/ano): ");
+                String dataString = scanner.next();
+                Venda[] vetor = vController.findByDate(dataString, this.vendas);
+                vVenda.showAll(vetor);
                 break;
             
             default:
                 // buscar venda pelo codigo
-                System.out.println("Informe o código da venda a ser exibida: ");
+                System.out.print("Informe o código da venda a ser exibida: ");
                 int idVenda = scanner.nextInt();
                 Venda venda = vController.findById(idVenda, this.vendas);
                 if (venda != null)

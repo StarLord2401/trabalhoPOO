@@ -21,4 +21,15 @@ public class VendaController {
                 return vetor[i];
         return venda = null;
     }
+
+    public Venda[] findByDate(String dataString, Venda[] vetor){
+        Venda[] answer = new Venda[vetor.length];
+        int k = 0;
+        for (int i = 0; i < vetor.length; i++) 
+            if (vetor[i] != null && dataString.equals(vetor[i].getData())){
+                answer[k] = vetor[i];
+                k++;
+            }
+        return answer;
+    }
 }

@@ -1,17 +1,26 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Venda {
+    private static SimpleDateFormat mascara;
     private static int geraId = 0;
     private int idVenda;
     private Date data;
     private Item[] itensVendidos;
     private String cliente;
 
-    public static Venda getInstance(Date data, Item[] itensVendidos, String cliente){
-        if (itensVendidos != null)
-            return new Venda(data, itensVendidos, cliente);
+    public static Venda getInstance(String dataString, Item[] itensVendidos, String cliente){
+        if (itensVendidos != null){
+            try {
+                mascara = new SimpleDateFormat("dd/MM/yyyy");
+                Date data = mascara.parse(dataString);
+                return new Venda(data, itensVendidos, cliente);
+            } catch (Exception e) {
+                return new Venda(itensVendidos, cliente);
+            }
+        }
         return null;
     }
 
@@ -41,8 +50,8 @@ public class Venda {
         return idVenda;
     }
 
-    public Date getData() {
-        return data;
+    public String getData() {
+        return mascara.format(data);
     }
 
     public Item[] getItensVendidos() {

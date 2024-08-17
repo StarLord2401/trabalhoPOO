@@ -21,7 +21,6 @@ public class ItemView {
         System.out.printf("%-17s", "PRODUTO");
         System.out.printf("%-17s", "VALOR");
         System.out.printf("%-17s", "QUANTIDADE");
-        System.out.println();
     }
 
     private void showInList(Item item) {

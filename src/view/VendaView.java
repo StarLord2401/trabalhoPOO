@@ -20,7 +20,7 @@ public class VendaView {
         System.out.printf("%-17s", venda.getIdVenda());
         System.out.printf("%-17s", venda.getData());
         System.out.printf("%-17s", venda.getCliente());
-        System.out.println("\n--------------------- ITENS VENDIDOS --------------------------");
+        System.out.println("\n\n--------------------- ITENS VENDIDOS --------------------------");
         this.vItem.showItensVendidos(venda.getItensVendidos());
         System.out.println("------------------------------------------------------------");
     }
@@ -29,6 +29,7 @@ public class VendaView {
         System.out.println("\n\n------------------------- VENDA " + id + " ----------------------------");
         System.out.printf("%-17s", "CÓDIGO");
         System.out.printf("%-17s", "DATA");
-        System.out.printf("%-17s", "CLIENTE\n");
+        System.out.printf("%-17s", "CLIENTE");
+        System.out.println();
     }
 }
